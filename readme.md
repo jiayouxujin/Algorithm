@@ -8,3 +8,4 @@
 | 10/19 | leetcode 153 | done     |
 | 10/20 | leetcode 154 | done     |
 | 10/21 | leetcode 74 | done     |
+| 10/23 | leetcode 547 | done     |
