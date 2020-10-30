@@ -14,3 +14,4 @@
 | 10/26 | leetcode 112 | done     |
 | 10/27 | leetcode 113 | done     |
 | 10/28 | leetcode 130 | done     |
+| 10/29 | leetcode 200 | done     |
