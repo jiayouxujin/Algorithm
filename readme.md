@@ -17,3 +17,4 @@
 | 10/29 | leetcode 200 | done     |
 | 10/30 | leetcode 695 | done     |
 | 10/31 | leetcode 979 | done     |
+| 11/01 | leetcode 22 | done     |
