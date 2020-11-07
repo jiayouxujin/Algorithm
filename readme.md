@@ -18,3 +18,9 @@
 | 10/30 | leetcode 695 | done     |
 | 10/31 | leetcode 979 | done     |
 | 11/01 | leetcode 22 | done     |
+| 11/02 | leetcode 22 | done     |
+| 11/03 | leetcode 22 | done     |
+| 11/04 | leetcode 22 | done     |
+| 11/05 | leetcode 22 | done     |
+| 11/06 | leetcode 22 | done     |
+| 11/07 | leetcode 240 | done     |
