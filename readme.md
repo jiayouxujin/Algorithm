@@ -22,5 +22,5 @@
 | 11/03 | leetcode 22 | done     |
 | 11/04 | leetcode 22 | done     |
 | 11/05 | leetcode 22 | done     |
-| 11/06 | leetcode 22 | done     |
+| 11/06 | leetcode 79 | done     |
 | 11/07 | leetcode 240 | done     |
