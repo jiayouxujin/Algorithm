@@ -25,6 +25,8 @@
 | 11/06 | leetcode 79 | done     |
 | 11/07 | leetcode 240 | done     |
 | 11/08 | leetcode 23 | done     |
+| 11/09 | leetcode 257 | done     |
+
 
 
 
@@ -50,3 +52,27 @@
 因为这道题有重复性，100合并跟2组50个合并是一致的所以可以使用二分。
 
 【如何提高性能？用线程---来自某次面试】
+
+### leetcode257
+
+>Given a binary tree, return all root-to-leaf paths.
+>
+>**Note:** A leaf is a node with no children.
+>
+>**Example:**
+>
+>```
+>Input:
+>
+>   1
+> /   \
+>2     3
+> \
+>  5
+>
+>Output: ["1->2->5", "1->3"]
+>
+>Explanation: All root-to-leaf paths are: 1->2->5, 1->3
+>```
+
+解题思路：递归，因为是树的问题，所以容易想到递归。并且这里存在重复问题，可以使用递归。
