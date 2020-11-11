@@ -26,7 +26,8 @@
 | 11/07 | leetcode 240 | done     |
 | 11/08 | leetcode 23 | done     |
 | 11/09 | leetcode 257 | done     |
-
+| 11/10| leetcode  |      |
+| 11/11| leetcode 973 |   done   |
 
 
 
