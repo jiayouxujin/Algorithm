@@ -28,6 +28,10 @@
 | 11/09 | leetcode 257 | done     |
 | 11/10| leetcode  |      |
 | 11/11| leetcode 973 |   done   |
+| 11/12| leetcode  |      |
+| 11/13| leetcode  |      |
+| 11/14| leetcode 70 |   done   |
+
 
 
 
