@@ -31,6 +31,7 @@
 | 11/12| leetcode  |      |
 | 11/13| leetcode  |      |
 | 11/14| leetcode 70 |   done   |
+| 11/21| leetcode 152 |   done   |
 
 
 
