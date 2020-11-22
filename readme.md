@@ -32,7 +32,7 @@
 | 11/13| leetcode  |      |
 | 11/14| leetcode 70 |   done   |
 | 11/21| leetcode 152 |   done   |
-
+| 11/22| leetcode 53 |   done   |
 
 
 
@@ -82,3 +82,23 @@
 >```
 
 解题思路：递归，因为是树的问题，所以容易想到递归。并且这里存在重复问题，可以使用递归。
+
+### leetcode52
+
+>Given an integer array `nums`, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+>
+>**Example:**
+>
+>```
+>Input: [-2,1,-3,4,-1,2,1,-5,4],
+>Output: 6
+>Explanation: [4,-1,2,1] has the largest sum = 6.
+>```
+
+解题思路：DP
+
+dp[i]表示前i个最大的和，那么存在两种情况
+
+dp[i-1]<0 那么dp[i]=nums[i]
+
+dp[i-1]>0 那么dp[i]=dp[i-1]+nums[i]
