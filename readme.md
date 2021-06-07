@@ -124,3 +124,28 @@ dp[i-1]>0 那么dp[i]=dp[i-1]+nums[i]
 > 经典的两数之和，用上Hash这个思想和巧妙
 ### leetcode 11
 > 经典双指针的思想-盛最多水的容器
+
+通过left和right。如果left小于等于right则移动left。这里证明为什么这样可以：
+
+如果不可以的话，意味着有可能还会用到left(这里假设left为小的)
+
+那么此时不管right是大的还是小的都不会比原来得到的结果要大
+
+```java
+public class Solution{
+    public int solve(int []height){
+        int left=0,right=height.length-1;
+        int ans=0;
+        while(left<=right){
+            ans=Math.max(ans,Math.min(height[left],height[right])*(right-left));
+            if(height[left]<=height[right]){
+                left++;
+            }else{
+                right--;
+            }
+        }
+        return ans;
+    }
+}
+```
+
