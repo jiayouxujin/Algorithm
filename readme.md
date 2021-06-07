@@ -149,3 +149,32 @@ public class Solution{
 }
 ```
 
+### Leetcode 42
+
+>给定 *n* 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+
+单调栈，为什么会是单调栈的解法呢？木桶原理。所以我们维护一个单调的序列，单出现不单调的那么就存在可以接水的地方。
+
+```java
+public class Solution{
+    public int solve(int []height){
+        Stack<Integer> stack=new Stack<>();
+       	int ans=0;
+        
+        for(int i=0;i<height.length;i++){
+            while(!stack.isEmpty()&&(height[statck.peek()]<=height[i])){
+                int popIndex=stack.pop();
+                if(!stack.isEmpty()){
+                int h=Math.min(height[i]-height[popIndex],height[stack.peek()]-height[popIndeX])；
+                int w=i-stack.peek()-1;
+                    
+                ans+=h*w;
+            }
+            }
+            stack.push(i);
+        }
+        return ans;
+    }
+}
+```
+
