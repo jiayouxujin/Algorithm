@@ -257,5 +257,89 @@ public class Solution{
 }
 ```
 
+### [面试题 02.07. 链表相交](https://leetcode-cn.com/problems/intersection-of-two-linked-lists-lcci/)
+
+>给定两个（单向）链表，判定它们是否相交并返回交点。请注意相交的定义基于节点的引用，而不是基于节点的值。换句话说，如果一个链表的第k个节点与另一个链表的第j个节点是同一节点（引用完全相同），则这两个链表相交。
+
+这道题题目一开始没看懂，不过一开始的思路是用一个container存起来，然后遍历另外一个链表，如果存在则说明相交。但是这样的空间复杂度就变成了O(n)。最终参考答案，才发现题目是说如果两个链表相交就是说最终会合成同一条。所以就有这三种情况
+
+- 尾部不同不相交
+- 一个为空不相交
+- 相交
+
+```java
+public class Solution{
+    public ListNode getIntersectionNode(ListNode headA,ListNode headB){
+        if(headA==null||headB==null) return null;
+        ListNode a=headA,b=headB;
+        int sizea=0,sizeb=0;
+        while(a!=null){
+            a=a.next;
+            sizea++;
+        }
+        while(b!=null){
+            b=b.next;
+            sizeb++;
+        }
+        int diff=Math.abs(sizea-sizeb);
+        if(sizea>sizeb){
+            while(diff-->0){
+                headA=headA.next;
+            }
+        }else{
+            while(diff-->=){
+                headB=headB.next;
+            }
+        }
+        while(headA!=headB){
+            headA=headA.next;
+            headB=headB.next;
+        }
+        return headA;
+    }
+}
+```
+
+### [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+
+>给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+>
+>为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意，pos 仅仅是用于标识环的情况，并不会作为参数传递到函数中。
+
+首先要通过快慢指针判断是否存在环。然后通过公式发现找到入口的窍门
+
+x(到入口) y(慢指针在环内走的)z(环的长度-y)
+
+2*(x+y)=x+y+n(y+z)  //x+y是慢指针走的，x+n(y+z)是快指针走的。慢指针比快指针少走一半
+
+x+y=n(y+z)
+
+x=(n-1)(y+z)-y
+
+x=z
+
+```java
+public class Solution{
+    public ListNode detectCycle(ListNode head){
+        ListNode fast=head,slow=head;
+        while(fast!=null&&fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            
+            if(slow==fast){
+                ListNode index1=head;
+                ListNode index2=slow;
+                while(index1!=index2){
+                    index1=index1.next;
+                    index2=index2.next;
+                }
+                return index1;
+            }
+        }
+        return null;
+    }
+}
+```
+
 
 
