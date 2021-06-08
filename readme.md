@@ -211,8 +211,8 @@ publc class Solution{
 ```java
 public class Solution{
     public ListNode swapPairs(ListNode head){
-        ListNode dummpyHead=new ListNode();
-        dummpyHead.next=head;
+        ListNode dummy=new ListNode();
+        dummy.next=head;
         ListNode pre=dummpyHead;
         
         while(pre.next!=null&&pre.next.next!=null){
@@ -224,8 +224,38 @@ public class Solution{
             pre=head;
             head=tmp;
         }
-        return dummpyHead.next;
+        return dummy.next;
     }
 }
 ```
+
+### Leetcode 19 删除链表的倒数第N个节点
+
+>给你一个链表，删除链表的倒数第 `n` 个结点，并且返回链表的头结点。
+
+快慢指针，不过为了解决头指针被删掉的情况需要加一个虚拟头指针。
+
+```java
+public class Solution{
+    public ListNode removeNthFromEnd(ListNode head,int n){
+        ListNode dummy=new ListNode();
+        dummy.next=head;
+        ListNode slow=dummy,fast=dummy;
+        while(n>=0){
+            fast=fast.next;
+            n--;
+        }
+        
+        while(fast!=null){
+            fast=fast.next;
+            slow=slow.next;
+        }
+        
+        slow.next=slow.next.next;
+        return dummy.next;
+    }
+}
+```
+
+
 
