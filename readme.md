@@ -341,5 +341,60 @@ public class Solution{
 }
 ```
 
+### [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
 
+>整数数组 `nums` 按升序排列，数组中的值 **互不相同** 。
+>
+>在传递给函数之前，`nums` 在预先未知的某个下标 `k`（`0 <= k < nums.length`）上进行了 **旋转**，使数组变为 `[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]`（下标 **从 0 开始** 计数）。例如， `[0,1,2,4,5,6,7]` 在下标 `3` 处经旋转后可能变为 `[4,5,6,7,0,1,2]` 。
+>
+>给你 **旋转后** 的数组 `nums` 和一个整数 `target` ，如果 `nums` 中存在这个目标值 `target` ，则返回它的下标，否则返回 `-1` 。
+
+首先如果不考虑时间复杂度的话，那么直接`for`一下就行，这样时间复杂度是O(n)。但是这个时间复杂度面试官一般不会接受。
+
+所以他们会提出我需要时间复杂度为O(logn)的解法。
+
+在数组里搜索数据，且时间复杂度为O(logn)就会想到使用`二分查找`，但是这里的二分查找不同于直接有序的二分。这里的数据只能说是某个区间里有序。
+
+二分的应用场景就是在有序的情况下去找数据，所以无序是无法解决的。上面我们提到旋转排序数组只能在某个区间里有序。
+
+> 解法来了，判断目标数字是否在该区间内，如果在直接舍弃另一边。如果不在则舍弃有序的这一边
+
+为什么肯定会有个区间是有序的，因为这个数组只旋转一次。
+
+```java
+public class Solution{
+    public int search(int[] nums,int target){
+        if(nums==null||nums.length==0){
+            return -1;
+        }
+        int left=0,right=nums.length-1;
+        while(left<right){
+            int mid=(left+right)/2;
+            if(nums[mid]==target){
+                return mid;
+            }
+            
+            //判断有序的区间
+            if(nums[mid]<nums[right]){
+                //目标数字在该区间内
+                if(nums[mid]<target&&nums[right]>=target){
+                    left=mid+1;
+                }else{
+                    //目标数字不在该区间内
+					right=mid-1;
+                }
+            }else{
+                if(nums[mid]>target&&nums[left]<=target){
+                    right=mid-1;
+                }else{
+                    left=mid+1;
+                }
+            }
+        }
+        return nums[left]==target?left:-1;
+    }
+}
+```
+
+​													
 
