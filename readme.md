@@ -1,58 +1,14 @@
 # 刷题日记
 
-## 定个小目标，每日一题
-
-| 日期  | 题目        | 解决情况 |
-| ----- | ----------- | -------- |
-| 10/18 | leetcode 81 | done     |
-| 10/19 | leetcode 153 | done     |
-| 10/20 | leetcode 154 | done     |
-| 10/21 | leetcode 74 | done     |
-| 10/23 | leetcode 547 | done     |
-| 10/24 | leetcode 721 | done     |
-| 10/25 | leetcode 104 | done     |
-| 10/26 | leetcode 112 | done     |
-| 10/27 | leetcode 113 | done     |
-| 10/28 | leetcode 130 | done     |
-| 10/29 | leetcode 200 | done     |
-| 10/30 | leetcode 695 | done     |
-| 10/31 | leetcode 979 | done     |
-| 11/01 | leetcode 22 | done     |
-| 11/02 | leetcode 51 |      |
-| 11/03 | leetcode 52 |    |
-| 11/04 | leetcode 37 |      |
-| 11/05 | leetcode 980 | done     |
-| 11/06 | leetcode 79 | done     |
-| 11/07 | leetcode 240 | done     |
-| 11/08 | leetcode 23 | done     |
-| 11/09 | leetcode 257 | done     |
-| 11/10| leetcode  |      |
-| 11/11| leetcode 973 |   done   |
-| 11/12| leetcode  |      |
-| 11/13| leetcode  |      |
-| 11/14| leetcode 70 |   done   |
-| 11/21| leetcode 152 |   done   |
-| 11/22| leetcode 53 |   done   |
-
-------
-#### 分割线，最近由于总总原因断了刷题，要重新拾起来。接下来的刷题策略是按照专题来进行
-
-### Array
-| 题目  | 时间复杂度     | 空间复杂度  | 完成时间 |
-| ----- | ----------- | -------- | -------- |
-| 1.两数之和 | O(n) | O(n) | 2020-12-12 |
-| 11.盛最多水的容器 | O(n) | O(1) | 2020-12-13 |
-
-### Tree
-| 题目  | 时间复杂度     | 空间复杂度  | 完成时间 |
-| ----- | ----------- | -------- | -------- |
-| 94.二叉树的中序遍历 | O(n) | O(1) | 2020-12-20 |
-| 111.二叉树的最小深度 | O(n) | O(1) | 2020-12-20 |
-| 112.路径总和 | O(n) | O(1) | 2020-12-19 |
-| 113.路径总和2 | O(n) | O(1) | 2020-12-20 |
-| 129.求根到叶子节点数字之和 | O(n) | O(1) | 2020-12-20 |
+| 日期       | 题目        |
+| ---------- | ----------- |
+| 2021-06-10 | 81(1) 33(2) |
 
 
+
+## 心得
+
+- 二分查找只能用于有序数组中.
 
 ## 题解
 ### leetcode23
@@ -396,9 +352,60 @@ public class Solution{
 }
 ```
 
-#### 二刷心得
+#### 二刷心得=
 
 二刷了一下，竟然没有AC，问题出现在我判断有序区间的if改成`nums[mid]>nums[left]`,为什么这样的条件不行？
 
-因为我们计算mid的是向下取整，也就是mid是靠近left的。所以有可能出现mid==left，那么这样你不能说右边一定是有序的，所以导致出问题。	
+因为我们计算mid的是向下取整，也就是mid是靠近left的。所以有可能出现mid==left，那么这样你不能说右边一定是有序的，所以导致出问题。
+
+### 	[81. 搜索旋转排序数组 II](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/)
+
+>已知存在一个按非降序排列的整数数组 `nums` ，数组中的值不必互不相同。
+>
+>在传递给函数之前，`nums` 在预先未知的某个下标 `k`（`0 <= k < nums.length`）上进行了 **旋转** ，使数组变为 `[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]`（下标 **从 0 开始** 计数）。例如， `[0,1,2,4,4,4,5,6,6,7]` 在下标 `5` 处经旋转后可能变为 `[4,5,6,6,7,0,1,2,4,4]` 。
+>
+>给你 **旋转后** 的数组 `nums` 和一个整数 `target` ，请你编写一个函数来判断给定的目标值是否存在于数组中。如果 `nums` 中存在这个目标值 `target` ，则返回 `true` ，否则返回 `false` 。
+
+这道题相对上一道题就是数字可以重复，那么就是一下子没法判断哪里是有序的区间。为了解决这个问题，先把重复的数字去掉。`nums[left]==nums[mid]==nums[right]`时左右指针都向中间移动，这样就可以在新的区间内寻找有序数组。
+
+并且要注意这里判断的有序数组还要包括`=`号
+
+```java
+public class Solution{
+    public boolean search(int[] nums,int target){
+        if(nums==null||nums.length==0){
+            return false;
+        }
+        int left=0,right=nums.length-1;
+        while(left<right){
+            int mid=(left+right)/2;
+            if(nums[mid]==target){
+                return true;
+            }
+            //判断是否重复
+            if(nums[left]==nums[mid]&&nums[mid]==nums[right]){
+                left++;
+                right--;
+            }else if(nums[mid]<=nums[right]){
+                if(nums[right]>=target&&target>nums[mid]){
+                    left=mid+1;
+                }else{
+                    right=mid-1;
+                }
+            }else{
+                if(nums[left]<=target&&target<nums[mid]){
+                    right=mid-1;
+                }else{
+                    left=mid+1;
+                }
+            }
+        }
+        return nums[left]==target;
+    }
+}
+```
+
+
+
+
 
