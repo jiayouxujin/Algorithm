@@ -12,8 +12,8 @@
 | 2021-06-17 | 81(3)1(2)         | 👍        |
 | 2021-06-18 | 242(3)            | 👍        |
 | 2021-06-19 | 349(3) 1155(1)    | 👍        |
-| 2021-06-20 | 1155(2)           |          |
-| 2021-06-21 | 202(3)            |          |
+| 2021-06-20 | 1155(2) 474(1)    | 👍        |
+| 2021-06-21 | 202(3)474(2)      |          |
 | 2021-06-22 | 1(3)              |          |
 |            |                   |          |
 |            |                   |          |
@@ -558,6 +558,46 @@ class Solution{
             map.put(nums[i],i);
         }
         return new int[0];
+    }
+}
+```
+
+### [1155. 掷骰子的N种方法](https://leetcode-cn.com/problems/number-of-dice-rolls-with-target-sum/)
+
+>这里有 d 个一样的骰子，每个骰子上都有 f 个面，分别标号为 1, 2, ..., f。
+>
+>我们约定：掷骰子的得到总点数为各骰子面朝上的数字的总和。
+>
+>如果需要掷出的总点数为 target，请你计算出有多少种不同的组合情况（所有的组合情况总共有 f^d 种），模 10^9 + 7 后返回。
+
+动态规划题。
+
+先找到题目中变化的点，即骰子的个数和当前的总和。
+
+我们设为dp-i-j，其中i表示第i个骰子，j表示当前的总和。现在我们可以写出动态规划的公式
+
+因为第i个骰子只能扔出1-f的数，所以dp-i-j=dp【i-1】【j-1】+....dp【i-1】【j-f】
+
+接下来base，就是只有一个骰子扔出1-f的组合情况只有1种.[因为只能扔一次]
+
+```java
+class Solution{
+    public int numRollsToTarget(int d,int f,int target){
+        int mod=1000000007;
+        int[][] dp=new int[31][1001];
+        int min=Math.min(f,target);
+        for(int i=1;i<=min;i++){
+            dp[1][i]=1;
+        }
+        int maxTarget=d*f;
+        for(int i=2;i<=d;i++){
+            for(int j=i;j<=maxTarget;j++){
+                for(int k=1;j-k>0&&k<=f;k++){
+                    dp[i][j]=(dp[i][j]+dp[i-1][j-k])%mod;
+                }
+            }
+        }
+        return dp[d][target];
     }
 }
 ```
