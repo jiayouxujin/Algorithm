@@ -811,3 +811,29 @@ public Solution{
 }
 ```
 
+### [719. 找出第 k 小的距离对](https://leetcode-cn.com/problems/find-k-th-smallest-pair-distance/)
+
+>给定一个整数数组，返回所有数对之间的第 k 个最小**距离**。一对 (A, B) 的距离被定义为 A 和 B 之间的绝对差值。
+
+这也是一道二分法，距离的范围是0-nummax-nummin。然后开始二分。如果count大于k表示此时的mid太大。否则mid太小.
+
+```java
+class Solution{
+    public int smallestDistncePair(int[] nums,int k){
+        Arrays.sort(nums);
+        int lo=0,hi=nums[nums.length-1]-nums[0];
+        while(lo<hi){
+            int mi=(lo+hi)/2;
+            int count=0,left=0;
+            for(int right=0;right<nums.length;right++){
+                while(nums[right]-nums[left]>mi) left++;
+                count+=right-left;
+            }
+            if(count>=k) hi=mi;
+            else lo=mi+1;
+        }
+        return lo;
+    }
+}
+```
+
