@@ -4,7 +4,7 @@
 | ---------- | ------------- | -------- |
 | 2021-07-01 | 433(1)        | 👍        |
 | 2021-07-02 | 1020(1)433(2) | 👍        |
-|            |               |          |
+| 2021-07-03 | 1020(2)       | 👍        |
 |            |               |          |
 |            |               |          |
 |            |               |          |
@@ -965,4 +965,58 @@ public int minMutation(String start, String end, String[] bank) {
         return true;
     }
 ```
+
+### [1020. 飞地的数量](https://leetcode-cn.com/problems/number-of-enclaves/)
+
+> 给出一个二维数组 `A`，每个单元格为 0（代表海）或 1（代表陆地）。
+>
+> 移动是指在陆地上从一个地方走到另一个地方（朝四个方向之一）或离开网格的边界。
+>
+> 返回网格中**无法**在任意次数的移动中离开网格边界的陆地单元格的数量。
+
+这一题是DFS，在DFS的过程中将1改成0，剩下的1就是答案。
+
+```java
+class Solution{
+    public int numEnclaves(int[][] grid){
+        if(grid==null||grid.length==0||grid[0].length==0){
+            return 0;
+        }
+        int r=grid.length,c=grid[0].length;
+        for(int i=0;i<r;i++){
+            dfs(grid,i,0);
+            dfs(grid,i,c-1);
+        }
+        for(int i=0;i<c;i++){
+            dfs(grid,0,i);
+            dfs(grid,r-1,i);
+        }
+        
+        int res=0;
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(grid[i][j]==1){
+                    res++;
+                }
+            }
+        }
+        return res;
+    }
+    
+    public void dfs(int[][] grid,int r,int c){
+        if(r<0||r>=grid.length||c<0||c>=grid[0].length){
+            return ;
+        }
+        if(grid[r][c]==0) return ;
+        
+        grid[r][c]=0;
+        dfs(grid,r+1,c);
+        dfs(grid,r-1,c);
+        dfs(grid,r,c+1);
+        dfs()
+    }
+}
+```
+
+
 
