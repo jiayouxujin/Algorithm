@@ -1,28 +1,28 @@
 # 刷题日记
 
-| 日期       | 题目          | 完成情况 |
-| ---------- | ------------- | -------- |
-| 2021-07-01 | 433(1)        | 👍        |
-| 2021-07-02 | 1020(1)433(2) | 👍        |
-| 2021-07-03 | 1020(2)       | 👍        |
-| 2021-07-04 | 1091(1)       | 👍        |
-| 2021-07-05 | 165(1)        |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
-|            |               |          |
+| 日期       | 题目            | 完成情况 |
+| ---------- | --------------- | -------- |
+| 2021-07-01 | 433(1)          | 👍        |
+| 2021-07-02 | 1020(1)433(2)   | 👍        |
+| 2021-07-03 | 1020(2)         | 👍        |
+| 2021-07-04 | 1091(1)         | 👍        |
+| 2021-07-05 | 165(1)          | 👍        |
+| 2021-07-06 | 剑指offer 57(1) | 👍        |
+| 2021-07-08 | 1367(1)         | 👍        |
+|            |                 |          |
+|            |                 |          |
+|            |                 |          |
+|            |                 |          |
+|            |                 |          |
+|            |                 |          |
+|            |                 |          |
+|            |                 |          |
+|            |                 |          |
+|            |                 |          |
+|            |                 |          |
+|            |                 |          |
+|            |                 |          |
+|            |                 |          |
 
 [toc]
 
@@ -1127,6 +1127,81 @@ func decode(v string)[]int{
         out=append(out,n)
     }
     return out
+}
+```
+
+### [剑指 Offer 57 - II. 和为s的连续正数序列](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
+
+> 输入一个正整数 `target` ，输出所有和为 `target` 的连续正整数序列（至少含有两个数）。
+>
+> 序列内的数字由小到大排列，不同序列按照首个数字从小到大排列。
+
+这是一道滑动窗口的题目，首先把1-target的数字看成一个窗口。然后左右移动指针，使得指针内的sum和为target
+
+```go
+func findContinuousSequence(target int) [][]int {
+    i,j,sum:=1,1,0
+    res:=make([][]int,0)
+    for i<target{
+        if sum<target{
+            sum+=j
+            j++
+        }else{
+            if sum==target{
+                tmp:=make([]int,0)
+                for k:=i;k<j;k++{
+                    tmp=append(tmp,k)
+                }
+                res=append(res,tmp)
+            }
+            sum-=i
+            i++
+        }
+    }
+    return res
+}
+```
+
+### [1367. 二叉树中的列表](https://leetcode-cn.com/problems/linked-list-in-binary-tree/)
+
+> 给你一棵以 `root` 为根的二叉树和一个 `head` 为第一个节点的链表。
+>
+> 如果在二叉树中，存在一条一直向下的路径，且每个点的数值恰好一一对应以 `head` 为首的链表中每个节点的值，那么请你返回 `True` ，否则返回 `False` 。
+>
+> 一直向下的路径的意思是：从树中某个节点开始，一直连续向下的路径。
+
+这是一道递归题
+
+```go
+type ListNode struct{
+    Val int
+    Next *ListNode
+}
+
+type TreeNode struct{
+    Val int
+    Left *TreeNode
+    Right *TreeNode
+}
+
+func isSubPath(head *ListNode,root *TreeNode) bool{
+    if root==nil{
+        return false
+    }
+    return isSub(head,root)||isSubPath(head,root.Left)||isSubPath(head,root.Right);
+}
+
+func isSub(head *ListNode,root *TreeNode) bool{
+    if head==nil{
+        return true
+    }
+    if root==nil{
+        return false
+    }
+    if head.Val!=root.Val{
+        return false
+    }
+    return isSub(head.Next,root.Left)||isSub(head.Next,root.Right)
 }
 ```
 
