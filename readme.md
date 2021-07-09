@@ -9,7 +9,7 @@
 | 2021-07-05 | 165(1)          | 👍        |
 | 2021-07-06 | 剑指offer 57(1) | 👍        |
 | 2021-07-08 | 1367(1)         | 👍        |
-|            |                 |          |
+| 2021-07-09 | 821(1)          | 👍        |
 |            |                 |          |
 |            |                 |          |
 |            |                 |          |
@@ -1202,6 +1202,41 @@ func isSub(head *ListNode,root *TreeNode) bool{
         return false
     }
     return isSub(head.Next,root.Left)||isSub(head.Next,root.Right)
+}
+```
+
+### [821. 字符的最短距离](https://leetcode-cn.com/problems/shortest-distance-to-a-character/)
+
+> 给你一个字符串 `s` 和一个字符 `c` ，且 `c` 是 `s` 中出现过的字符。
+>
+> 返回一个整数数组 `answer` ，其中 `answer.length == s.length` 且 `answer[i]` 是 `s` 中从下标 `i` 到离它 **最近** 的字符 `c` 的 **距离** 。
+>
+> 两个下标 `i` 和 `j` 之间的 **距离** 为 `abs(i - j)` ，其中 `abs` 是绝对值函数。
+
+解法：遍历两次字符串，从左到右更新一遍到c值得距离，在从右更新一遍到C值得距离【从左到右 假设c值在左边，从右到左 假设c值在右边】
+
+```go
+func shortestToChar(s string,c byte)[]int{
+    n:=len(s)
+    res:=make([]int,n)
+    for i:=range res{
+     	res[i]=n
+    }
+    
+    for i:=0;i<n;i++{
+        if s[i]==c{
+            res[i]=0
+        }else if i>0{
+            res[i]=res[i-1]+1
+        }
+    }
+    
+    for i:=n-1;i>=0;i--{
+        if i<n-1&&res[i+1]+1<res[i]{
+            res[i]=res[i+1]+1
+        }
+    }
+    return res
 }
 ```
 
