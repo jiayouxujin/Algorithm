@@ -11,7 +11,7 @@
 | 2021-07-08 | 1367(1)         | 👍        |
 | 2021-07-09 | 821(1)          | 👍        |
 | 2021-07-10 | 881(1)          | 👍        |
-|            |                 |          |
+| 2021-07-11 | 532(1)          | 👍        |
 |            |                 |          |
 |            |                 |          |
 |            |                 |          |
@@ -1261,6 +1261,45 @@ func numRescueBoats(people []int, limit int)int{
         }
         
     }
+}
+```
+
+### [532. 数组中的 k-diff 数对](https://leetcode-cn.com/problems/k-diff-pairs-in-an-array/)
+
+> 给定一个整数数组和一个整数 `**k**`，你需要在数组里找到 **不同的** k-diff 数对，并返回不同的 **k-diff 数对** 的数目。
+>
+> 这里将 **k-diff** 数对定义为一个整数对 `(nums[i], nums[j])`，并满足下述全部条件：
+>
+> - `0 <= i < j < nums.length`
+> - `|nums[i] - nums[j]| == k`
+>
+> **注意**，`|val|` 表示 `val` 的绝对值。
+
+看到这道题，我一开始想到的方法是双指针，但是这里数组的每个数字可以被多次使用，所以不好处理这种情况。
+
+正确思路是通过map来查找某个数字，跟2sum有点像。
+
+```go
+func findPairs(nums []int,k int)int{
+    if k<0||len(nums)==0{
+        return 0
+    }
+    count:=0
+    m:=make(map[int]int,len(nums))
+    for _,n:=range nums{
+        m[n]++
+    }
+    
+    for key:=range m{
+        if k==0&&m[key]>1{
+            count++
+            continue
+        }
+        if k>0&&m[key+k]>0{
+            count++
+        }
+    }
+    return count
 }
 ```
 
