@@ -19,7 +19,7 @@
 | 2021-07-16 | 1487               | 👍        |
 | 2021-07-17 | 1577               | 👍        |
 | 2021-07-18 | 1684               | 👍        |
-|            |                    |          |
+| 2021-07-19 | 1302               | 👍        |
 |            |                    |          |
 |            |                    |          |
 |            |                    |          |
@@ -1570,6 +1570,60 @@ func countConsistentStrings(allowed string, words []string) int {
         }
     }
     return ret
+}
+```
+
+### [1302. 层数最深叶子节点的和](https://leetcode-cn.com/problems/deepest-leaves-sum/)
+
+> 给你一棵二叉树的根节点 `root` ，请你返回 **层数最深的叶子节点的和** 。
+>
+>  
+>
+> **示例 1：**
+>
+> **![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/12/28/1483_ex1.png)**
+>
+> ```
+> 输入：root = [1,2,3,4,5,null,6,7,null,null,null,null,8]
+> 输出：15
+> ```
+>
+> **示例 2：**
+>
+> ```
+> 输入：root = [6,7,8,2,7,1,3,9,null,1,4,null,null,null,5]
+> 输出：19
+> ```
+
+通过DFS，然后将最深的val累加起来。最深在DFS的过程中要更新。
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func deepestLeavesSum(root *TreeNode) int {
+    maxLevel,sum:=0,0
+    dfs(root,0,&maxLevel,&sum);
+    return sum
+}
+
+func dfs(root *TreeNode,level int, maxLevel,sum *int){
+    if root==nil{
+        return ;
+    }
+    if level>*maxLevel{
+        *maxLevel,*sum=level,root.Val
+    }else if level==*maxLevel{
+        *sum+=root.Val
+    }
+
+    dfs(root.Left,level+1,maxLevel,sum)
+    dfs(root.Right,level+1,maxLevel,sum)
 }
 ```
 
