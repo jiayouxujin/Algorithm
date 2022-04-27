@@ -6,41 +6,41 @@
 
 // @lc code=start
 func minWindow(s string, t string) string {
-	if len(s) == 0 || len(t) == 0 {
+	if s == "" || t == "" {
 		return ""
 	}
 
-	needCheck := map[byte]int{}
+	need, window := map[byte]int{}, map[byte]int{}
 	for i := 0; i < len(t); i++ {
-		needCheck[t[i]]++
+		need[t[i]]++
 	}
 
-	window := map[byte]int{}
-	left, right, count, start, minLen, ans := 0, 0, 0, -1, len(s)+1, ""
+	left, right, ans, count, start, minLen := 0, 0, "", 0, -1, len(s)+1
 	for right < len(s) {
 		c := s[right]
 		right++
 
-		if _, ok := needCheck[c]; ok {
+		if _, ok := need[c]; ok {
 			window[c]++
-			if window[c] == needCheck[c] {
+			if window[c] == need[c] {
 				count++
 			}
 		}
 
-		for count == len(needCheck) {
-			if right-left < minLen {
+		for count == len(need) {
+			if minLen > right-left {
 				minLen = right - left
 				start = left
 			}
-			r := s[left]
+
+			d := s[left]
 			left++
 
-			if _, ok := needCheck[r]; ok {
-				if window[r] == needCheck[r] {
+			if _, ok := need[d]; ok {
+				if window[d] == need[d] {
 					count--
 				}
-				window[r]--
+				window[d]--
 			}
 		}
 	}
