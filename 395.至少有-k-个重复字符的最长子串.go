@@ -6,38 +6,7 @@
 
 // @lc code=start
 func longestSubstring(s string, k int) int {
-	if s == "" {
-		return 0
-	}
-
-	freq, res, split := [26]int{}, 0, byte(0)
-	for _, c := range s {
-		freq[c-'a']++
-	}
-
-	for i, c := range freq[:] {
-		if c > 0 && c < k {
-			split = 'a' + byte(i)
-		}
-	}
-
-	if split == 0 {
-		return len(s)
-	}
-
-	for _, subStr := range strings.Split(s, string(split)) {
-		res = max(res, longestSubstring(subStr, k))
-	}
-
-	return res
+	
 }
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
 // @lc code=end
 
