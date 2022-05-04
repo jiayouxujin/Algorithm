@@ -14,6 +14,7 @@ func checkInclusion(s1 string, s2 string) bool {
 	}
 
 	need, window := map[byte]int{}, map[byte]int{}
+
 	for i := 0; i < len(s1); i++ {
 		need[s1[i]]++
 	}
@@ -25,7 +26,7 @@ func checkInclusion(s1 string, s2 string) bool {
 
 		if _, ok := need[c]; ok {
 			window[c]++
-			if window[c] == need[c] {
+			if need[c] == window[c] {
 				count++
 			}
 		}
