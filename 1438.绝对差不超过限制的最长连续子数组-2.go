@@ -8,23 +8,23 @@
 func longestSubarray(nums []int, limit int) int {
 	minStack, maxStack := []int{}, []int{}
 	left, res := 0, 0
-	for right, v := range nums {
-		for len(minStack) > 0 && nums[minStack[0]] > v {
-			minStack = minStack[1:]
+	for right, n := range nums {
+		for len(minStack) > 0 && nums[minStack[len(minStack)-1]] > n {
+			minStack = minStack[:len(minStack)-1]
 		}
 		minStack = append(minStack, right)
 
-		for len(maxStack) > 0 && nums[maxStack[0]] < v {
-			maxStack = maxStack[1:]
+		for len(maxStack) > 0 && nums[maxStack[len(maxStack)-1]] < n {
+			maxStack = maxStack[:len(maxStack)-1]
 		}
 		maxStack = append(maxStack, right)
 
-		for len(maxStack) > 0 && len(minStack) > 0 && nums[maxStack[0]]-nums[minStack[0]] > limit {
-			if maxStack[0] == left {
-				maxStack = maxStack[1:]
-			}
-			if minStack[0] == left {
+		for len(minStack) > 0 && len(maxStack) > 0 && nums[maxStack[0]]-nums[minStack[0]] > limit {
+			if left == minStack[0] {
 				minStack = minStack[1:]
+			}
+			if left == maxStack[0] {
+				maxStack = maxStack[1:]
 			}
 			left++
 		}

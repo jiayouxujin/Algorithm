@@ -6,25 +6,27 @@
 
 // @lc code=start
 func lengthOfLongestSubstring(s string) int {
-
-	left,right,length,m:=0,0,0,map[byte]int{}
-
-	for right<len(s){
-		c:=s[right]
+	if s == "" {
+		return 0
+	}
+	window, left, right, res := make(map[byte]int), 0, 0, 0
+	for right < len(s) {
+		c := s[right]
 		right++
-		m[c]++
+		window[c]++
 
-		for m[c]>1{
-			remove:=s[left]
-			m[remove]--
+		for window[c] > 1 {
+			remove := s[left]
+			window[remove]--
 			left++
 		}
 
-		if right-left>length{
-			length=right-left
+		if right-left > res {
+			res = right - left
 		}
 	}
-	return length
+	return res
 }
+
 // @lc code=end
 
