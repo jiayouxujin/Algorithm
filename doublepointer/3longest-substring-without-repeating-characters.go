@@ -21,7 +21,7 @@ func lengthOfLongestSubstring(s string) int {
 	return res
 }
 
-func main() {
-	res := lengthOfLongestSubstring("abcabcbb")
-	print(res)
-}
+//func main() {
+//	res := lengthOfLongestSubstring("abcabcbb")
+//	print(res)
+//}
