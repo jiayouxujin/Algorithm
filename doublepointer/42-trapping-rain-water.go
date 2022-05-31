@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 //version 1
 //func trap(height []int) int {
 //	n, res := len(height), 0
@@ -74,7 +70,7 @@ func max(a, b int) int {
 	return b
 }
 
-func main() {
-	height := []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
-	fmt.Printf("%v \n", trap(height))
-}
+//func main() {
+//	height := []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
+//	fmt.Printf("%v \n", trap(height))
+//}
