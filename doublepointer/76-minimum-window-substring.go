@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func minWindow(s string, t string) string {
 	if s == "" {
 		return ""
@@ -50,7 +48,7 @@ func minWindow(s string, t string) string {
 	return s[begin : begin+length]
 }
 
-func main() {
-	s, t := "ADOBECODEBANC", "ABC"
-	fmt.Printf("%v \n", minWindow(s, t))
-}
+//func main() {
+//	s, t := "ADOBECODEBANC", "ABC"
+//	fmt.Printf("%v \n", minWindow(s, t))
+//}
