@@ -14,7 +14,7 @@ func intersection(nums1 []int, nums2 []int) []int {
 	return res
 }
 
-func main() {
-	nums1, nums2 := []int{1, 2, 2, 1}, []int{2, 2}
-	_ = intersection(nums1, nums2)
-}
+//func main() {
+//	nums1, nums2 := []int{1, 2, 2, 1}, []int{2, 2}
+//	_ = intersection(nums1, nums2)
+//}
