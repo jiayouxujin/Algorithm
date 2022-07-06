@@ -1,7 +1,7 @@
 package main
 
 type Node struct {
-	Key, Val   int
+	Key, Value int
 	Prev, Next *Node
 }
 type LRUCache struct {
@@ -11,26 +11,29 @@ type LRUCache struct {
 }
 
 func Constructor(capacity int) LRUCache {
-	return LRUCache{Keys: make(map[int]*Node), Cap: capacity}
+	return LRUCache{Cap: capacity, Keys: make(map[int]*Node)}
 }
 
 func (this *LRUCache) Get(key int) int {
 	if node, ok := this.Keys[key]; ok {
 		this.Remove(node)
 		this.Add(node)
-		return node.Val
+		return node.Value
 	}
 	return -1
 }
 
 func (this *LRUCache) Put(key int, value int) {
 	if node, ok := this.Keys[key]; ok {
-		node.Val = value
+		node.Value = value
 		this.Remove(node)
 		this.Add(node)
 		return
 	} else {
-		node = &Node{Key: key, Val: value}
+		node := &Node{
+			Key:   key,
+			Value: value,
+		}
 		this.Keys[key] = node
 		this.Add(node)
 	}
@@ -47,6 +50,7 @@ func (this *LRUCache) Add(node *Node) {
 		this.head.Prev = node
 	}
 	this.head = node
+
 	if this.tail == nil {
 		this.tail = node
 		this.tail.Next = nil
@@ -58,27 +62,15 @@ func (this *LRUCache) Remove(node *Node) {
 		this.head = node.Next
 		node.Next = nil
 		return
-	}
-	if node == this.tail {
+	} else if node == this.tail {
 		this.tail = node.Prev
-		node.Prev.Next = nil
+		this.tail.Next = nil
 		node.Prev = nil
 		return
 	}
 	node.Prev.Next = node.Next
 	node.Next.Prev = node.Prev
 }
-
-//func main() {
-//	cache := Constructor(2)
-//	cache.Put(1, 1)
-//	cache.Put(2, 2)
-//	fmt.Printf("%v \n", cache.Get(1))
-//	cache.Put(3, 3)
-//	fmt.Printf("%v \n", cache.Get(2))
-//	cache.Put(4, 4)
-//	fmt.Printf("%v \n", cache.Get(1))
-//}
 
 /**
  * Your LRUCache object will be instantiated and called as such:
