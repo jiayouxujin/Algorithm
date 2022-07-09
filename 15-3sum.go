@@ -9,7 +9,7 @@ func threeSum(nums []int) [][]int {
 	res := make([][]int, 0)
 	sort.Ints(nums)
 	for i := 0; i < len(nums)-2; i++ {
-		tmp := twoSum(nums, i+1, 0-nums[i])
+		tmp := twoSum2(nums, i+1, 0-nums[i])
 		for _, v := range tmp {
 			v = append(v, nums[i])
 			res = append(res, v)
@@ -21,7 +21,7 @@ func threeSum(nums []int) [][]int {
 	return res
 }
 
-func twoSum(nums []int, start, target int) [][]int {
+func twoSum2(nums []int, start, target int) [][]int {
 	left, right, res := start, len(nums)-1, make([][]int, 0)
 	for left < right {
 		sum := nums[left] + nums[right]
