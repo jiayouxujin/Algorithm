@@ -17,13 +17,13 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 }
 
 func reverse(a, b *ListNode) *ListNode {
-	var prev *ListNode
+	var pre *ListNode
 	cur, next := a, a
 	for cur != b {
 		next = cur.Next
-		cur.Next = prev
-		prev = cur
+		cur.Next = pre
+		pre = cur
 		cur = next
 	}
-	return prev
+	return pre
 }
