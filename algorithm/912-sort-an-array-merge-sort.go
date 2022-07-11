@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func sortArray2(nums []int) []int {
 	if nums == nil || len(nums) == 0 {
 		return nums
@@ -45,7 +43,7 @@ func merge(nums []int, l, mid, r int) {
 	}
 }
 
-func main() {
-	nums := []int{5, 2, 3, 1}
-	fmt.Printf("%v \n", sortArray2(nums))
-}
+//func main() {
+//	nums := []int{5, 2, 3, 1}
+//	fmt.Printf("%v \n", sortArray2(nums))
+//}
