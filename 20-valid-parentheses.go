@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func isValid(s string) bool {
 	stack := make([]byte, 0)
 	for i := 0; i < len(s); i++ {
@@ -18,7 +16,7 @@ func isValid(s string) bool {
 	return len(stack) == 0
 }
 
-func main() {
-	s := "()"
-	fmt.Printf("%v \n", isValid(s))
-}
+//func main() {
+//	s := "()"
+//	fmt.Printf("%v \n", isValid(s))
+//}
