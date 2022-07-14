@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func numIslands(grid [][]byte) int {
 	if grid == nil || len(grid) == 0 || len(grid[0]) == 0 {
 		return 0
@@ -33,12 +31,12 @@ func dfs(grid [][]byte, i, j int) {
 	dfs(grid, i, j-1)
 }
 
-func main() {
-	grid := [][]byte{
-		{'1', '1', '1', '1', '0'},
-		{'1', '1', '0', '1', '0'},
-		{'1', '1', '0', '0', '0'},
-		{'0', '0', '0', '0', '0'},
-	}
-	fmt.Printf("%v \n", numIslands(grid))
-}
+//func main() {
+//	grid := [][]byte{
+//		{'1', '1', '1', '1', '0'},
+//		{'1', '1', '0', '1', '0'},
+//		{'1', '1', '0', '0', '0'},
+//		{'0', '0', '0', '0', '0'},
+//	}
+//	fmt.Printf("%v \n", numIslands(grid))
+//}
