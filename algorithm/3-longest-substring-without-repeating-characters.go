@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func lengthOfLongestSubstring(s string) int {
 	left, res, window := 0, 0, make(map[byte]int, 0)
 	for right := 0; right < len(s); right++ {
@@ -21,7 +19,7 @@ func lengthOfLongestSubstring(s string) int {
 	return res
 }
 
-func main() {
-	s := "abcabcbb"
-	fmt.Printf("%v \n", lengthOfLongestSubstring(s))
-}
+//func main() {
+//	s := "abcabcbb"
+//	fmt.Printf("%v \n", lengthOfLongestSubstring(s))
+//}
