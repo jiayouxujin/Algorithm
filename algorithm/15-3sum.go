@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -53,7 +52,7 @@ func towSum(nums []int, start, target int) [][]int {
 	return res
 }
 
-func main() {
-	nums := []int{-1, 0, 1, 2, -1, -4}
-	fmt.Printf("%v \n", threeSum(nums))
-}
+//func main() {
+//	nums := []int{-1, 0, 1, 2, -1, -4}
+//	fmt.Printf("%v \n", threeSum(nums))
+//}
