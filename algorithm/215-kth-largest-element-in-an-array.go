@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math/rand"
 )
 
@@ -44,7 +43,7 @@ func quickPartition(nums []int, l, r int) int {
 	return i + 1
 }
 
-func main() {
-	nums, k := []int{3, 2, 1, 5, 6, 4}, 2
-	fmt.Printf("%v \n", findKthLargest(nums, k))
-}
+//func main() {
+//	nums, k := []int{3, 2, 1, 5, 6, 4}, 2
+//	fmt.Printf("%v \n", findKthLargest(nums, k))
+//}
