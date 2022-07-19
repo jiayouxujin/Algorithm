@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func lengthOfLIS(nums []int) int {
 	if nums == nil || len(nums) == 0 {
 		return 0
@@ -25,7 +23,7 @@ func lengthOfLIS(nums []int) int {
 	return res
 }
 
-func main() {
-	nums := []int{10, 9, 2, 5, 3, 7, 101, 18}
-	fmt.Printf("%v \n", lengthOfLIS(nums))
-}
+//func main() {
+//	nums := []int{10, 9, 2, 5, 3, 7, 101, 18}
+//	fmt.Printf("%v \n", lengthOfLIS(nums))
+//}
