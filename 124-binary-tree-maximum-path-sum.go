@@ -6,16 +6,15 @@ func maxPathSum(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
-	max := math.MinInt32
-	getPathSum(root, &max)
-	return max
+	maxSum := math.MinInt32
+	getPathSum(root, &maxSum)
+	return maxSum
 }
 
 func getPathSum(root *TreeNode, maxSum *int) int {
 	if root == nil {
 		return math.MinInt32
 	}
-
 	left := getPathSum(root.Left, maxSum)
 	right := getPathSum(root.Right, maxSum)
 
