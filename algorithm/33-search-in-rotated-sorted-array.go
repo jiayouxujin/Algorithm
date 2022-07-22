@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func search(nums []int, target int) int {
 	left, right := 0, len(nums)-1
 	for left < right {
@@ -29,7 +27,7 @@ func search(nums []int, target int) int {
 	return -1
 }
 
-func main() {
-	nums, target := []int{4, 5, 6, 7, 0, 1, 2}, 0
-	fmt.Printf("%v \n", search(nums, target))
-}
+//func main() {
+//	nums, target := []int{4, 5, 6, 7, 0, 1, 2}, 0
+//	fmt.Printf("%v \n", search(nums, target))
+//}
