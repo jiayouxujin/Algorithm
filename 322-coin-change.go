@@ -6,6 +6,7 @@ func coinChange(coins []int, amount int) int {
 	for i := 1; i <= amount; i++ {
 		dp[i] = amount + 1
 	}
+
 	for i := 1; i <= amount; i++ {
 		for j := 0; j < len(coins); j++ {
 			if coins[j] <= i {
@@ -13,7 +14,7 @@ func coinChange(coins []int, amount int) int {
 			}
 		}
 	}
-	if dp[amount] > amount {
+	if dp[amount] == amount+1 {
 		return -1
 	}
 	return dp[amount]
