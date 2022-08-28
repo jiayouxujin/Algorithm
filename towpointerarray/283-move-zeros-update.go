@@ -16,7 +16,7 @@ func moveZero2(nums []int) {
 	fmt.Printf("%v \n", nums)
 }
 
-func main() {
-	nums := []int{0, 1, 6, 3, 6, 3, 12}
-	moveZero2(nums)
-}
+//func main() {
+//	nums := []int{0, 1, 6, 3, 6, 3, 12}
+//	moveZero2(nums)
+//}
