@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func lengthOfLongestSubstringKDistinct(s string, k int) int {
 	left, window, res := 0, make(map[byte]int), 0
 	for right := 0; right < len(s); right++ {
@@ -26,7 +24,7 @@ func lengthOfLongestSubstringKDistinct(s string, k int) int {
 	return res
 }
 
-func main() {
-	s, k := "aa", 1
-	fmt.Printf("%v \n", lengthOfLongestSubstringKDistinct(s, k))
-}
+//func main() {
+//	s, k := "aa", 1
+//	fmt.Printf("%v \n", lengthOfLongestSubstringKDistinct(s, k))
+//}
