@@ -1,20 +1,24 @@
 package main
 
-func lengthOfLongestSubstringTwoDistinct(s string) int {
+import "fmt"
+
+func lengthOfLongestSubstringKDistinct(s string, k int) int {
 	left, window, res := 0, make(map[byte]int), 0
 	for right := 0; right < len(s); right++ {
 		c := s[right]
 		window[c]++
 
-		for len(window) > 2 {
+		for len(window) > k {
 			d := s[left]
 			left++
+
 			if window[d] == 1 {
 				delete(window, d)
 			} else {
 				window[d]--
 			}
 		}
+
 		if res < right-left+1 {
 			res = right - left + 1
 		}
@@ -22,7 +26,7 @@ func lengthOfLongestSubstringTwoDistinct(s string) int {
 	return res
 }
 
-//func main() {
-//	s := "ccaabbb"
-//	fmt.Printf("%v \n", lengthOfLongestSubstringTwoDistinct(s))
-//}
+func main() {
+	s, k := "aa", 1
+	fmt.Printf("%v \n", lengthOfLongestSubstringKDistinct(s, k))
+}
