@@ -1,4 +1,4 @@
-package singlestack
+package main
 
 func removeKdigits(num string, k int) string {
 	if k == len(num) {
