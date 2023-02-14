@@ -6,7 +6,7 @@ type LRUCache struct {
 	queue    []int
 }
 
-func Constructor(capacity int) LRUCache {
+func Constructor2(capacity int) LRUCache {
 	return LRUCache{
 		capacity: capacity,
 		dict:     make(map[int]int),
