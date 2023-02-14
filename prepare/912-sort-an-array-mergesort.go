@@ -1,6 +1,6 @@
 package main
 
-func sortArray(nums []int) []int {
+func sortArray2(nums []int) []int {
 	mergeSort(nums, 0, len(nums)-1)
 	return nums
 }
