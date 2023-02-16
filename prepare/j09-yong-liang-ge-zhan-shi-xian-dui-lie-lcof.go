@@ -4,7 +4,7 @@ type CQueue struct {
 	in, out []int
 }
 
-func Constructor() CQueue {
+func Constructor3() CQueue {
 	return CQueue{
 		in:  make([]int, 0),
 		out: make([]int, 0),
