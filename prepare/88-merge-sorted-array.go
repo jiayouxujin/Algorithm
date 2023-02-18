@@ -1,6 +1,6 @@
 package main
 
-func merge(nums1 []int, m int, nums2 []int, n int) {
+func merge2(nums1 []int, m int, nums2 []int, n int) {
 	l := len(nums1) - 1
 	m--
 	n--
