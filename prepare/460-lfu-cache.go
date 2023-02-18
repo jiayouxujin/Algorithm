@@ -78,7 +78,7 @@ type LFUCache struct {
 	list     *Tdll
 }
 
-func Constructor(capacity int) LFUCache {
+func Constructor5(capacity int) LFUCache {
 	c := LFUCache{
 		cap:  capacity,
 		len:  0,
