@@ -1,6 +1,8 @@
 package main
 
-import "strconv"
+import (
+	"strconv"
+)
 
 type TrieNode struct {
 	Children [10]*TrieNode
@@ -21,4 +23,24 @@ func findKthNumber(n int, k int) int {
 			curr = curr.Children[index]
 		}
 	}
+
+	var res int
+	queue := make([]int, 0)
+	queue = append(queue, 1)
+	for len(queue) > 0 {
+		curr := queue[0]
+		queue = queue[1:]
+		k--
+		if k == 0 {
+			res = curr
+			break
+		}
+		node := root.Children[curr]
+		for i := 9; i >= 0; i-- {
+			if node.Children[i] != nil {
+				queue = append(queue, curr*10+i)
+			}
+		}
+	}
+	return res
 }
